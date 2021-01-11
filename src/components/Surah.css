@@ -1,0 +1,21 @@
+.surah__ayah,
+.surah__header {
+  display: flex;
+  padding: 0 40px;
+}
+
+.surah__header {
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.surah__ayahNumber {
+  margin-right: 10px;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+.surah__ayahText {
+  margin-top: 15px;
+}
