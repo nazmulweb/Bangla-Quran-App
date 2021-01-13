@@ -19,5 +19,7 @@
 .app__body {
   min-height: calc(100vh - 80px);
   margin-top: 30px;
-  margin-left: 280px;
+  margin-left: 320px;
+  margin-right: 40px;
+  width: 100%;
 }

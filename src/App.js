@@ -14,19 +14,25 @@ import {
 function App() {
 
   const [surahs, setSurahs ] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(()=>{
     axios
     .get(`http://api.alquran.cloud/v1/surah`)
     .then(res=>{
-      console.log(res.data.data)
+      setLoading(true)
       setSurahs(res.data.data)
     })
     .catch(err =>{
         console.log("error:", err)
     })
 
+    setLoading(false)
+
   }, [])
+  
+
+  console.log(loading)
 
   return (
     <div className="app">
