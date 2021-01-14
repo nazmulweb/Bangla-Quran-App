@@ -2,23 +2,25 @@ import {useState, useEffect} from 'react';
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import axios from 'axios';
-import _ from 'lodash';
-import './Surah.css'
+import Loading from './Loading';
+import './Surah.css';
 
 
 
-const Surah = () => {
+const Surah = ({language}) => {
     // get parameter id 
     let { id } = useParams();
 
     const [surahName, setSurahName] = useState([]);
+
+    const [loading, setLoading ] = useState(true);
     
-    const [testNewSurah, setTestNewSurah] = useState([]);
+    const [urahWithTranslate, setTestNewSurah] = useState([]);
 
     const fetchData = (id) =>{
 
         const arTranslateSurah = axios.get(`http://api.alquran.cloud/v1/surah/${id}`);
-        const bnTranslateSurah = axios.get(`http://api.alquran.cloud/v1/surah/${id}/bn.bengali`);
+        const bnTranslateSurah = axios.get(`http://api.alquran.cloud/v1/surah/${id}/${language}`);
 
         axios.all([arTranslateSurah, bnTranslateSurah])
             .then(
@@ -29,26 +31,33 @@ const Surah = () => {
                     const suraArr = [[...arSurah], [...bnSurah]]
 
                     setTestNewSurah(suraArr)
+                    setLoading(false)
                 })
             )
     }
 
 
     useEffect(()=>{
+
+        setLoading(true)
         // get surah 
         fetchData(id)
 
         // get surah name 
         axios
-        .get(`http://api.alquran.cloud/v1/surah/${id}/bn.bengali`)
+        .get(`http://api.alquran.cloud/v1/surah/${id}/${language}`)
         .then(res=>{
             setSurahName(res.data.data)
+            localStorage.setItem('surah', JSON.stringify(res.data.data))
         })
         .catch(err =>{
             console.log("error:", err)
         })
 
-    }, [id])
+    }, [id, language])
+
+    // loading 
+    if(loading) return <div><Loading /></div>
 
     return (
         <div className="surah">
@@ -66,18 +75,18 @@ const Surah = () => {
                 </div>
                 <div className="surah__body">
                     <div>
-                        { testNewSurah[0] !== undefined &&
-                            testNewSurah[0].map((ayah, i)=>{
+                        { urahWithTranslate[0] !== undefined &&
+                            urahWithTranslate[0].map((ayah, i)=>{
 
                                 let bangla = '';
 
-                                if(testNewSurah[1] != undefined || testNewSurah[1][i] != undefined){
-                                    bangla = testNewSurah[1][i].text
+                                if(urahWithTranslate[1] != undefined || urahWithTranslate[1][i] != undefined){
+                                    bangla = urahWithTranslate[1][i].text
                                 }
 
                                 return (
                                     <div className="surah__ayah"  key={ayah.number} >
-                                        <div className="surah__ayahNumber"> {i + 1}. </div>
+                                        <div className="surah__ayahNumber"> {i + 1} </div>
                                         <div className="surah__ayahText"> 
                                             <p className="surah__arabicTranslate">{ayah.text}</p>
                                             <p>{bangla}</p>  

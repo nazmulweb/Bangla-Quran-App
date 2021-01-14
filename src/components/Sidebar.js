@@ -10,7 +10,7 @@ const Sidebar = (props) => {
         <div className="sidebar">
             <div className="sidebar__container">
                 <div className="sidebar__logo">
-                    <Link to={`/1`}>Quran App</Link>
+                    <Link to={`/`}>Quran App</Link>
                 </div>
                 <div className="sidebar__content">
                     <ul className="sidebar__list">

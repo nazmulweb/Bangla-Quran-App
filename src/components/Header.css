@@ -1,0 +1,12 @@
+.header {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  box-shadow: 0 0 20px rgba(89, 102, 122, 0.1);
+  transition: 0.5s;
+  background-color: #fff;
+  padding: 15px 30px;
+  height: 82px;
+}
