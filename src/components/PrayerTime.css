@@ -1,0 +1,43 @@
+.prayertime {
+  padding: 40px;
+}
+
+.prayertime__tableRow img {
+  width: 30px;
+  margin-right: 20px;
+}
+
+.prayertime__prayerName {
+  display: flex !important;
+  align-items: center;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+.prayertime__prayerTime {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+.prayertime__sunrise,
+.prayertime__clock,
+.prayertime__sunset {
+  text-align: center;
+}
+
+.prayertime__sunrise img,
+.prayertime__clock img,
+.prayertime__sunset img {
+  width: 50px;
+}
+
+.prayertime__clock img {
+  margin-left: 12px;
+}
+
+.prayertime__headerWrapper {
+  /* display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center; */
+}

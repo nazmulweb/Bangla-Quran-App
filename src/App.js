@@ -1,18 +1,20 @@
 import {useState, useEffect} from 'react';
-import './App.css';
+import axios from 'axios';
 import Sidebar from './components/Sidebar';
 import Surah from './components/Surah';
-import axios from 'axios';
 import NoMatch from './components/NoMatch';
 import Loading from './components/Loading';
 import Header from './components/Header';
 import Welcome from './components/Welcome';
-
+import PrayerTime from './components/PrayerTime';
+import './App.css';
 import {   
   BrowserRouter as Router,
   Switch,
   Route,
-   } from 'react-router-dom'
+} from 'react-router-dom';
+
+const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
 
 function App() {
 
@@ -23,7 +25,7 @@ function App() {
   useEffect(()=>{
     setLoading(true)
     axios
-    .get(`http://api.alquran.cloud/v1/surah`)
+    .get(`${baseUrl}v1/surah`)
     .then(res=>{
       setSurahs(res.data.data)
       setLoading(false)
@@ -58,6 +60,7 @@ function App() {
             <div className="app__body">
             <Switch>
                 <Route exact path="/" children={ <Welcome />} />
+                <Route path="/prayer-time" children={ <PrayerTime />} />
                 <Route path="/surah/:id" children={ <Surah language={language} />} />
                 <Route path="*">
                     <NoMatch />

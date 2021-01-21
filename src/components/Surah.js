@@ -4,8 +4,9 @@ import { Helmet } from "react-helmet";
 import axios from 'axios';
 import Loading from './Loading';
 import './Surah.css';
+import { conforms } from 'lodash';
 
-
+const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
 
 const Surah = ({language}) => {
     // get parameter id 
@@ -16,11 +17,13 @@ const Surah = ({language}) => {
     const [loading, setLoading ] = useState(true);
     
     const [urahWithTranslate, setTestNewSurah] = useState([]);
+    const [favorite, setFavorite] = useState([]);
+
 
     const fetchData = (id) =>{
 
-        const arTranslateSurah = axios.get(`http://api.alquran.cloud/v1/surah/${id}`);
-        const bnTranslateSurah = axios.get(`http://api.alquran.cloud/v1/surah/${id}/${language}`);
+        const arTranslateSurah = axios.get(`${baseUrl}v1/surah/${id}`);
+        const bnTranslateSurah = axios.get(`${baseUrl}v1/surah/${id}/${language}`);
 
         axios.all([arTranslateSurah, bnTranslateSurah])
             .then(
@@ -45,7 +48,7 @@ const Surah = ({language}) => {
 
         // get surah name 
         axios
-        .get(`http://api.alquran.cloud/v1/surah/${id}/${language}`)
+        .get(`${baseUrl}v1/surah/${id}/${language}`)
         .then(res=>{
             setSurahName(res.data.data)
             localStorage.setItem('surah', JSON.stringify(res.data.data))
@@ -56,6 +59,13 @@ const Surah = ({language}) => {
 
     }, [id, language])
 
+    
+    useEffect(()=>{
+        console.log(favorite)
+        localStorage.setItem('favoriteAyah', JSON.stringify({ayah: favorite}))
+    },[favorite])
+
+
     // loading 
     if(loading) return <div><Loading /></div>
 
@@ -64,6 +74,7 @@ const Surah = ({language}) => {
             <Helmet>
                 <title>{surahName !== undefined && surahName.englishName}</title>
             </Helmet>
+            
             <div className="surah__container">
                 <div className="surah__header">
                     <div className="surah__name">
@@ -88,6 +99,7 @@ const Surah = ({language}) => {
                                     <div className="surah__ayah"  key={ayah.number} >
                                         <div className="surah__ayahNumber"> {i + 1} </div>
                                         <div className="surah__ayahText"> 
+                                        <button className="surah__favorite" onClick={()=> setFavorite([[ayah.text, bangla], ...favorite])}>love</button>
                                             <p className="surah__arabicTranslate">{ayah.text}</p>
                                             <p>{bangla}</p>  
                                         </div>

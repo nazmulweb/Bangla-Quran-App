@@ -1,0 +1,22 @@
+.welcome {
+  background: url(../assets/quran-app-bg.jpg);
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+}
+
+.welcome::after {
+  content: "";
+  position: absolute;
+  background: black;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+}

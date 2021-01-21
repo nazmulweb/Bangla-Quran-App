@@ -9,4 +9,18 @@
   background-color: #fff;
   padding: 15px 30px;
   height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.header__prayerTime {
+  margin-right: 15px !important;
 }
