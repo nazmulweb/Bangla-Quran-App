@@ -20,3 +20,46 @@
   width: 100%;
   opacity: 0.5;
 }
+
+.welcome__recentRead {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 10px 20px;
+  bottom: 50px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #3f51b5;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.MuiSvgIcon-root {
+  font-size: 2rem !important;
+  margin-right: 10px;
+}
+
+.welcome__wrapper {
+  width: 100%;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 100px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome__ayah {
+  opacity: 1;
+  position: absolute;
+  z-index: 111;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}

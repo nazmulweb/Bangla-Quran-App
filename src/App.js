@@ -37,11 +37,9 @@ function App() {
 
   }, [])
 
-
   const changeLanguage = () =>{
     setLangauge(language === "bn.bengali" ? "en.asad" : "bn.bengali" )
   }
-
 
   // loading 
   if(loading) return <div><Loading /></div>
@@ -59,7 +57,7 @@ function App() {
           </div>
             <div className="app__body">
             <Switch>
-                <Route exact path="/" children={ <Welcome />} />
+                <Route exact path="/" children={ <Welcome language={language} />} />
                 <Route path="/prayer-time" children={ <PrayerTime />} />
                 <Route path="/surah/:id" children={ <Surah language={language} />} />
                 <Route path="*">
