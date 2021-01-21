@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
   
+const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
 
 const Header = ({onclick, language}) =>  {
 
@@ -13,7 +14,7 @@ const Header = ({onclick, language}) =>  {
     useEffect(()=>{
         setLoading(true)
         axios
-        .get(`http://api.alquran.cloud/v1/search/${searchValue}/37/${language}`)
+        .get(`${baseUrl}v1/search/${searchValue}/37/${language}`)
         .then(res=>{
           setSearchValue(res.data.data)
           setLoading(false)

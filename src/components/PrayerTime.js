@@ -54,7 +54,6 @@ const PrayerTime = () => {
 
     useEffect(()=>{
         // clear time 
-        console.log(prayerTime)
         return ()=>{
             clearInterval(setTime(null))
         }
