@@ -1,0 +1,78 @@
+.searchResult__ayah,
+.searchResult__header {
+  display: flex;
+  width: 100%;
+}
+
+.searchResult__ayah {
+  padding: 20px 0px;
+  position: relative;
+  align-items: baseline;
+}
+
+.searchResult__ayah:not(:last-child) {
+  border-bottom: 1px solid #e8e6e6;
+}
+
+.searchResult__header {
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 45px;
+}
+
+.searchResult__ayahNumber {
+  background: url(../assets/ayah-no-bg.png);
+  font-weight: 600;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 16px;
+  line-height: 42px;
+  top: -23px;
+  background-size: contain;
+  opacity: 0.7;
+  margin-right: 15px;
+}
+
+.searchResult__ayahText {
+  width: 100%;
+}
+
+.searchResult__arabicTranslate {
+  font-family: "Amiri", serif;
+  text-align: right;
+  font-weight: 700;
+  font-size: 20px;
+  position: relative;
+  margin-right: 36px;
+  margin-bottom: 25px;
+}
+
+.searchResult__arabicTranslate:after {
+  content: "";
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  background: #a79fff;
+  right: -36px;
+  border-radius: 50%;
+  top: 0px;
+}
+
+.searchResult__favorite {
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.searchResult__ayahRow:not(:last-child) {
+  border-bottom: 1px solid #e8e6e6;
+  margin: 25px 0;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-disableElevation.searchResult__name {
+  background: #dad6ff;
+  color: #3f51b5;
+  font-weight: 600;
+}

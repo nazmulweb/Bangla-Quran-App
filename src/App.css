@@ -24,3 +24,13 @@
   width: calc(100vw - 280px);
   position: relative;
 }
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .app__sidebar {
+    width: 220px;
+  }
+  .app__body {
+    margin-left: 220px;
+    width: calc(100vw - 220px);
+  }
+}

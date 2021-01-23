@@ -24,3 +24,52 @@
 .header__prayerTime {
   margin-right: 15px !important;
 }
+
+.header__search {
+  display: flex;
+  align-items: center;
+}
+
+.header__searchInput {
+  font: inherit;
+  color: currentColor;
+  width: 100%;
+  border: 0;
+  height: 1.1876em;
+  margin: 0;
+  display: block;
+  padding: 6px 10px 7px 10px;
+  min-width: 0;
+  background: none;
+  box-sizing: content-box;
+  letter-spacing: inherit;
+  -webkit-tap-highlight-color: transparent;
+  border: 2px solid #303f9f;
+  border-radius: 4px;
+}
+
+.header__searchInput:focus {
+  outline: #303f9f;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.header__btn.MuiButton-containedPrimary.MuiButton-disableElevation {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -3px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .header {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+  }
+
+  .header__searchInput {
+    height: 1.25em !important;
+    width: 140px;
+  }
+  .MuiButton-root {
+    padding: 8px 10px !important;
+    font-size: 0.75rem !important;
+  }
+}

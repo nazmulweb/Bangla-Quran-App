@@ -4,13 +4,16 @@ import { Helmet } from "react-helmet";
 import axios from 'axios';
 import Loading from './Loading';
 import './Surah.css';
-import { conforms } from 'lodash';
+import SearchResult from './SearchResult';
+
 
 const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
 
-const Surah = ({language}) => {
+const Surah = ({language, searchResult}) => {
     // get parameter id 
     let { id } = useParams();
+
+    const [searchResultValue, setSearchResultValue] = useState([])
 
     const [surahName, setSurahName] = useState([]);
 
@@ -39,8 +42,8 @@ const Surah = ({language}) => {
             )
     }
 
-
     useEffect(()=>{
+
 
         setLoading(true)
         // get surah 
@@ -61,10 +64,12 @@ const Surah = ({language}) => {
 
     
     useEffect(()=>{
-        console.log(favorite)
         localStorage.setItem('favoriteAyah', JSON.stringify({ayah: favorite}))
     },[favorite])
-
+    
+    useEffect(()=>{
+        setSearchResultValue(searchResult)
+    },[searchResult])
 
     // loading 
     if(loading) return <div><Loading /></div>
@@ -74,7 +79,8 @@ const Surah = ({language}) => {
             <Helmet>
                 <title>{surahName !== undefined && surahName.englishName}</title>
             </Helmet>
-            
+            {
+            searchResultValue ? <SearchResult data={searchResultValue}/> :
             <div className="surah__container">
                 <div className="surah__header">
                     <div className="surah__name">
@@ -91,7 +97,7 @@ const Surah = ({language}) => {
 
                                 let bangla = '';
 
-                                if(urahWithTranslate[1] != undefined || urahWithTranslate[1][i] != undefined){
+                                if(urahWithTranslate[1] !== undefined || urahWithTranslate[1][i] !== undefined){
                                     bangla = urahWithTranslate[1][i].text
                                 }
 
@@ -110,6 +116,7 @@ const Surah = ({language}) => {
                     </div>
                 </div>
             </div>
+            }
         </div>
     )
 }

@@ -16,7 +16,7 @@ const Welcome = ({language}) => {
 
     useEffect(()=>{
         axios
-        .get(`http://api.alquran.cloud/v1/ayah/6107/editions/${language}`)
+        .get(`${baseUrl}v1/ayah/6107/editions/${language}`)
         .then(res=>{
             console.log(res.data.data[0].text)
             setAyah(res.data.data[0].text)

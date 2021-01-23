@@ -16,7 +16,7 @@ const Sidebar = (props) => {
                     <ul className="sidebar__list">
                         {props.surahs.map(surah =>{
                             return(
-                                <li key={surah.number} className="sidebar__item">
+                                <li onClick={props.onclick} key={surah.number} className="sidebar__item">
                                     <NavLink to={`/surah/${surah.number}`} className="sidebar__link">{surah.number}. {surah.englishName}</NavLink>
                                 </li>
                             )

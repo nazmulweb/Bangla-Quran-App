@@ -13,32 +13,56 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import { conforms } from 'lodash';
 
+// base url 
 const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
 
 function App() {
 
+  // search 
+  const [searchValue, setSearchValue] = useState();
+
+  // surah name 
   const [surahs, setSurahs ] = useState([]);
   const [loading, setLoading ] = useState(true);
   const [language, setLangauge] = useState("bn.bengali")
 
+
   useEffect(()=>{
     setLoading(true)
+    // get all surah name 
     axios
     .get(`${baseUrl}v1/surah`)
     .then(res=>{
+      // set suran name to state 
       setSurahs(res.data.data)
       setLoading(false)
     })
     .catch(err =>{
         console.log("error:", err)
     })
-
-
   }, [])
 
   const changeLanguage = () =>{
     setLangauge(language === "bn.bengali" ? "en.asad" : "bn.bengali" )
+  }
+
+  // search function 
+  const search = (search) => {
+    axios
+    .get(`${baseUrl}v1/search/${search}/all/${language}`)
+    .then(res=>{
+      setSearchValue(res.data.data)
+    })
+    .catch(err =>{
+        console.log("error:", err)
+    })
+  }
+
+  // set search result to null after click sidebar 
+  const sidebarClickHandler = () => {
+    setSearchValue(null)
   }
 
   // loading 
@@ -50,16 +74,20 @@ function App() {
         <Header
           onclick={ changeLanguage }
           language={language}
+          search={search}
         />
         <div className="app__container">
           <div className="app__sidebar">
-            <Sidebar surahs={surahs} />
+            <Sidebar onclick={sidebarClickHandler} surahs={surahs} />
           </div>
             <div className="app__body">
             <Switch>
                 <Route exact path="/" children={ <Welcome language={language} />} />
                 <Route path="/prayer-time" children={ <PrayerTime />} />
-                <Route path="/surah/:id" children={ <Surah language={language} />} />
+                <Route path="/surah/:id" children={ <Surah 
+                                                    searchResult={searchValue}
+                                                    language={language}
+                                                    surah={surahs}/>} />
                 <Route path="*">
                     <NoMatch />
                 </Route>
