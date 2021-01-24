@@ -5,6 +5,7 @@ import axios from 'axios';
 import Loading from './Loading';
 import './Surah.css';
 import SearchResult from './SearchResult';
+import Button from '@material-ui/core/Button';
 
 
 const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
@@ -105,7 +106,7 @@ const Surah = ({language, searchResult}) => {
                                     <div className="surah__ayah"  key={ayah.number} >
                                         <div className="surah__ayahNumber"> {i + 1} </div>
                                         <div className="surah__ayahText"> 
-                                        <button variant="contained" color="primary" className="surah__favorite" onClick={()=> setFavorite([[ayah.text, bangla], ...favorite])}>Favorite</button>
+                                        <Button variant="contained" color="primary" className="surah__favorite" onClick={()=> setFavorite([[ayah.text, bangla], ...favorite])}>Love</Button>
                                             <p className="surah__arabicTranslate">{ayah.text}</p>
                                             <p>{bangla}</p>  
                                         </div>
