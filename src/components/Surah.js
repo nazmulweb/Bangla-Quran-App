@@ -105,7 +105,7 @@ const Surah = ({language, searchResult}) => {
                                     <div className="surah__ayah"  key={ayah.number} >
                                         <div className="surah__ayahNumber"> {i + 1} </div>
                                         <div className="surah__ayahText"> 
-                                        <button className="surah__favorite" onClick={()=> setFavorite([[ayah.text, bangla], ...favorite])}>love</button>
+                                        <button variant="contained" color="primary" className="surah__favorite" onClick={()=> setFavorite([[ayah.text, bangla], ...favorite])}>Favorite</button>
                                             <p className="surah__arabicTranslate">{ayah.text}</p>
                                             <p>{bangla}</p>  
                                         </div>
