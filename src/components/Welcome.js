@@ -10,15 +10,12 @@ const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
 const Welcome = ({language}) => {
     const [ayah, setAyah] = useState('');
     const [loading, setLoading ] = useState(true);
-
-    // get recent read surah data 
-    const {number, englishName} = JSON.parse(localStorage.getItem("surah"));
+    const [resetnSurah, setResentSurah] = useState(null);
 
     useEffect(()=>{
         axios
         .get(`${baseUrl}v1/ayah/6107/editions/${language}`)
         .then(res=>{
-            console.log(res.data.data[0].text)
             setAyah(res.data.data[0].text)
             setLoading(false)
         })
@@ -27,6 +24,17 @@ const Welcome = ({language}) => {
         })
     }, [language])
 
+    useEffect(()=>{
+        // get recent read surah data 
+        if(JSON.parse(localStorage.getItem("surah"))){
+            var {number, englishName} = JSON.parse(localStorage.getItem("surah"));
+            setResentSurah({
+                number,
+                englishName  
+            })
+        }
+    },[])
+
     if(loading) return <div><Loading /></div>
 
     return (
@@ -34,7 +42,9 @@ const Welcome = ({language}) => {
             <div className="welcome__wrapper">
                 <h4 className="welcome__ayah">{ayah}</h4>
             </div>
-            <Link to={`/surah/${number}`} className="welcome__recentRead"><HistoryIcon />Recent Read: {englishName.toLowerCase()}</Link>
+            {
+             resetnSurah ? <Link to={`/surah/${resetnSurah.number}`} className="welcome__recentRead"><HistoryIcon />Recent Read: {resetnSurah.englishName.toLowerCase()}</Link> : "" 
+            }
         </div>
     )
 }
