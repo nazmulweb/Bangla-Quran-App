@@ -11,6 +11,7 @@ const Welcome = ({language}) => {
     const [ayah, setAyah] = useState('');
     const [loading, setLoading ] = useState(true);
     const [resetnSurah, setResentSurah] = useState(null);
+    // const [favorite, setFavorite] = useState();
 
     useEffect(()=>{
         axios
@@ -24,7 +25,7 @@ const Welcome = ({language}) => {
         })
     }, [language])
 
-    useEffect(()=>{
+    useEffect(()=> {
         // get recent read surah data 
         if(JSON.parse(localStorage.getItem("surah"))){
             var {number, englishName} = JSON.parse(localStorage.getItem("surah"));

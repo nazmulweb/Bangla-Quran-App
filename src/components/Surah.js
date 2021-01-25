@@ -5,10 +5,9 @@ import axios from 'axios';
 import Loading from './Loading';
 import './Surah.css';
 import SearchResult from './SearchResult';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 
-
-const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
+const baseUrl = process.env.REACT_APP_QURAN_BASE_URL;
 
 const Surah = ({language, searchResult}) => {
     // get parameter id 
@@ -21,10 +20,10 @@ const Surah = ({language, searchResult}) => {
     const [loading, setLoading ] = useState(true);
     
     const [urahWithTranslate, setTestNewSurah] = useState([]);
-    const [favorite, setFavorite] = useState([]);
+    // const [favorite, setFavorite] = useState([]);
 
 
-    const fetchData = (id) =>{
+    const fetchData = (id) => {
 
         const arTranslateSurah = axios.get(`${baseUrl}v1/surah/${id}`);
         const bnTranslateSurah = axios.get(`${baseUrl}v1/surah/${id}/${language}`);
@@ -44,8 +43,7 @@ const Surah = ({language, searchResult}) => {
     }
 
     useEffect(()=>{
-
-
+        
         setLoading(true)
         // get surah 
         fetchData(id)
@@ -63,14 +61,10 @@ const Surah = ({language, searchResult}) => {
 
     }, [id, language])
 
-    
-    useEffect(()=>{
-        localStorage.setItem('favoriteAyah', JSON.stringify({ayah: favorite}))
-    },[favorite])
-    
     useEffect(()=>{
         setSearchResultValue(searchResult)
     },[searchResult])
+
 
     // loading 
     if(loading) return <div><Loading /></div>
@@ -106,7 +100,7 @@ const Surah = ({language, searchResult}) => {
                                     <div className="surah__ayah"  key={ayah.number} >
                                         <div className="surah__ayahNumber"> {i + 1} </div>
                                         <div className="surah__ayahText"> 
-                                        <Button variant="contained" color="primary" className="surah__favorite" onClick={()=> setFavorite([[ayah.text, bangla], ...favorite])}>Love</Button>
+                                        {/* <Button variant="contained" color="primary" className="surah__favorite" onClick={()=> setFavorite([ayah.number, ...favorite])}>Love</Button> */}
                                             <p className="surah__arabicTranslate">{ayah.text}</p>
                                             <p>{bangla}</p>  
                                         </div>
@@ -123,13 +117,3 @@ const Surah = ({language, searchResult}) => {
 }
 
 export default Surah
-
-// const Ayat = () => {
-//     return (
-//         <div className="surah">
-//             <div className="surah__container">
-//                 ayat
-//             </div>
-//         </div>
-//     )
-// }

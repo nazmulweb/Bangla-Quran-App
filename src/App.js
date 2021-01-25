@@ -13,7 +13,6 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import { conforms } from 'lodash';
 
 // base url 
 const baseUrl = process.env.REACT_APP_QURAN_BASE_URL

@@ -73,3 +73,10 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.header__btn.MuiButt
     font-size: 0.75rem !important;
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .header {
+    margin-left: 0px;
+    width: 100%;
+  }
+}

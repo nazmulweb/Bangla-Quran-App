@@ -34,3 +34,13 @@
     width: calc(100vw - 220px);
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .app__sidebar {
+    display: none;
+  }
+  .app__body {
+    margin-left: 0;
+    width: 100%;
+  }
+}
