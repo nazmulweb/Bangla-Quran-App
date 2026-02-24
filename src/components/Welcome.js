@@ -5,6 +5,7 @@ import HistoryIcon from '@material-ui/icons/History';
 import axios from 'axios';
 import Loading from './Loading';
 import { translations } from '../utils/translations';
+import { surahNamesBn } from '../utils/surahNamesBn';
 
 const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
 
@@ -15,6 +16,13 @@ const Welcome = ({language}) => {
     // const [favorite, setFavorite] = useState();
     
     const t = translations[language] || translations["en.asad"];
+    const recentSurahDisplayName = resetnSurah
+      ? (
+          language === "bn.bengali"
+            ? (surahNamesBn[Number(resetnSurah.number)] || resetnSurah.name || resetnSurah.englishName)
+            : resetnSurah.englishName
+        )
+      : "";
 
     useEffect(()=>{
         axios
@@ -53,7 +61,7 @@ const Welcome = ({language}) => {
                     <Link to={`/surah/${resetnSurah.number}`} className="welcome__recentRead">
                         <HistoryIcon className="welcome__recentIcon" />
                         <span className="welcome__recentText">
-                            {t.recentRead}: <span className="welcome__recentName">{language === "bn.bengali" ? resetnSurah.name || resetnSurah.englishName.toLowerCase() : resetnSurah.englishName.toLowerCase()}</span>
+                            {t.recentRead}: <span className="welcome__recentName">{recentSurahDisplayName}</span>
                         </span>
                     </Link>
                  ) : null 

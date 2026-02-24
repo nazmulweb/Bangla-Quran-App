@@ -1,6 +1,7 @@
 import React from 'react';
 import './SearchResult.css';
 import { translations } from '../utils/translations';
+import { toLocaleNumber } from '../utils/numberConverter';
 
 const SearchResult = ({data, language}) => {
     const t = translations[language] || translations["en.asad"];
@@ -9,7 +10,7 @@ const SearchResult = ({data, language}) => {
         <div className="searchResult">
             <div className="searchResult__container">
                 <div className="searchResult__header">
-                    <div className="searchResult__name">{t.totalAyahFound} {data.matches.length}</div>
+                    <div className="searchResult__name">{t.totalAyahFound} {toLocaleNumber(data.matches.length, language)}</div>
                 </div>
                 <div className="searchResult__body">
                     <div>
@@ -20,7 +21,7 @@ const SearchResult = ({data, language}) => {
                                 <div className="searchResult__ayahRow" key={matchAyah.number}>
                                     <div className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-disableElevation searchResult__name">{language === "bn.bengali" ? matchAyah.surah.name : matchAyah.surah.englishName}</div>
                                     <div className="searchResult__ayah" >
-                                        <div className="searchResult__ayahNumber">{matchAyah.numberInSurah}</div>
+                                        <div className="searchResult__ayahNumber">{toLocaleNumber(matchAyah.numberInSurah, language)}</div>
                                         <div className="searchResult__ayahText"> 
                                             <p>{matchAyah.text}</p>
                                         </div>

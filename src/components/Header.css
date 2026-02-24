@@ -204,6 +204,13 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.header__btn.MuiButt
   .header__searchInput {
     padding: 9px 12px;
     font-size: 14px;
+    height: 40px;
+  }
+
+  button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.header__btn.MuiButton-containedPrimary.MuiButton-disableElevation {
+    height: 40px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .MuiButton-root {

@@ -3,6 +3,7 @@ import './Sidebar.css';
 import { Link, NavLink  } from 'react-router-dom'
 import { translations } from '../utils/translations';
 import { surahNamesBn } from '../utils/surahNamesBn';
+import { toLocaleNumber } from '../utils/numberConverter';
 
 const Sidebar = (props) => {
 
@@ -24,7 +25,7 @@ const Sidebar = (props) => {
                               : surah.englishName;
                             return(
                                 <li onClick={props.onclick} key={surah.number} className="sidebar__item">
-                                    <NavLink to={`/surah/${surah.number}`} className="sidebar__link">{surah.number}. {surahDisplayName}</NavLink>
+                                    <NavLink to={`/surah/${surah.number}`} className="sidebar__link">{toLocaleNumber(surah.number, props.language)}. {surahDisplayName}</NavLink>
                                 </li>
                             )
                         })}

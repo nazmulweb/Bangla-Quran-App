@@ -26,6 +26,7 @@ function App() {
   const [surahs, setSurahs ] = useState([]);
   const [loading, setLoading ] = useState(true);
   const [language, setLangauge] = useState("bn.bengali")
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
 
   useEffect(()=>{
@@ -48,9 +49,13 @@ function App() {
   }
 
   // search function 
-  const search = (search) => {
+  const search = (searchText) => {
+    if (!searchText) {
+      setSearchValue(null);
+      return;
+    }
     axios
-    .get(`${baseUrl}v1/search/${search}/all/${language}`)
+    .get(`${baseUrl}v1/search/${searchText}/all/${language}`)
     .then(res=>{
       setSearchValue(res.data.data)
     })
@@ -62,6 +67,7 @@ function App() {
   // set search result to null after click sidebar 
   const sidebarClickHandler = () => {
     setSearchValue(null)
+    setIsSidebarOpen(false)
   }
 
   // loading 
@@ -74,11 +80,16 @@ function App() {
           onclick={ changeLanguage }
           language={language}
           search={search}
+          onMenuClick={() => setIsSidebarOpen((prev) => !prev)}
         />
         <div className="app__container">
-          <div className="app__sidebar">
+          <div className={`app__sidebar ${isSidebarOpen ? "app__sidebar--open" : ""}`}>
             <Sidebar onclick={sidebarClickHandler} surahs={surahs} language={language} />
           </div>
+            <div
+              className={`app__overlay ${isSidebarOpen ? "app__overlay--visible" : ""}`}
+              onClick={() => setIsSidebarOpen(false)}
+            />
             <div className="app__body">
             <Switch>
                 <Route exact path="/" children={ <Welcome language={language} />} />
