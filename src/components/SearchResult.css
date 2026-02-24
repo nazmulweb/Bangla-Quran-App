@@ -50,14 +50,14 @@
 }
 
 .searchResult__arabicTranslate {
-  font-family: "Amiri", serif;
+  font-family: 'AlQuranIndoPak', 'Amiri', serif;
   text-align: right;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 30px;
   position: relative;
   margin-right: 30px;
   margin-bottom: 25px;
-  line-height: 1.8;
+  line-height: 2.2;
   color: var(--text-main);
 }
 

@@ -26,16 +26,55 @@
   transform: translateY(-2px);
 }
 
-.surah__header {
+.surah__headerCard {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: var(--surface-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.surah__headerCard:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.surah__headerIcon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-45%);
+  width: 170px;
+  opacity: 0.15;
+  pointer-events: none;
+  color: var(--primary);
+}
+
+.surah__headerTop {
+  display: flex;
   justify-content: space-between;
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 45px;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+  padding-right: 15px;
+}
+
+.surah__headerTop .surah__name,
+.surah__headerTop .surah__numberOfAyat {
   background: var(--primary);
   color: white;
-  padding: 24px 32px;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
 }
 
 .surah__ayahNumber {
@@ -55,19 +94,44 @@
   border: 3px solid var(--surface-color);
 }
 
+.surah__bismillahWrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.surah__bismillahArabic {
+  font-family: 'AlQuranIndoPak', 'Amiri', serif;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 2.2;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.surah__bismillahTranslate {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 25px;
+}
+
+.surah__bismillahTranslate:last-child {
+  margin-bottom: 0;
+}
+
 .surah__ayahText {
   width: 100%;
 }
 
 .surah__arabicTranslate {
-  font-family: "Amiri", serif;
+  font-family: 'AlQuranIndoPak', 'Amiri', serif;
   text-align: right;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 34px;
   position: relative;
   margin-right: 30px;
   margin-bottom: 25px;
-  line-height: 1.8;
+  line-height: 2.2;
   color: var(--text-main);
 }
 
@@ -103,10 +167,8 @@
     padding: 30px 24px;
   }
 
-  .surah__header {
-    font-size: 18px;
-    padding: 20px 24px;
-    margin-bottom: 28px;
+  .surah__headerTop {
+    margin-bottom: 24px;
   }
 
   .surah__arabicTranslate {
@@ -129,12 +191,23 @@
     margin-bottom: 16px;
   }
 
-  .surah__header {
+  .surah__headerCard {
+    padding: 20px 16px;
+    margin-bottom: 24px;
+  }
+
+  .surah__headerTop {
     flex-direction: column;
-    gap: 6px;
-    font-size: 16px;
-    margin-bottom: 16px;
-    padding: 16px;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .surah__headerIcon {
+    width: 100px;
+    height: 100px;
+    right: 15px;
+    opacity: 0.1;
+    display: none;
   }
 
   .surah__ayahNumber {

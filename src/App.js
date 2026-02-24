@@ -36,6 +36,7 @@ function App() {
     .get(`${baseUrl}v1/surah`)
     .then(res=>{
       // set suran name to state 
+      console.log(res.data.data)
       setSurahs(res.data.data)
       setLoading(false)
     })

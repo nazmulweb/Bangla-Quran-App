@@ -16,7 +16,11 @@ export const translations = {
     dhuhr: "যোহর",
     asr: "আসর",
     maghrib: "মাগরিব",
-    isha: "ইশা"
+    isha: "ইশা",
+    auzubillah: "أَعُوذُ بِٱللَّهِ مِنَ ٱلشَّيْطَانِ ٱلرَّجِيمِ",
+    auzubillahMeaning: "আমি বিতাড়িত শয়তান থেকে আল্লাহর আশ্রয় চাই।",
+    bismillah: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
+    bismillahMeaning: "পরম করুণাময় অসীম দয়ালু আল্লাহর নামে।"
   },
   "en.asad": {
     searchPlaceholder: "Search by word",
@@ -35,6 +39,10 @@ export const translations = {
     dhuhr: "Dhuhr",
     asr: "Asr",
     maghrib: "Maghrib",
-    isha: "Isha"
+    isha: "Isha",
+    auzubillah: "أَعُوذُ بِٱللَّهِ مِنَ ٱلشَّيْطَانِ ٱلرَّجِيمِ",
+    auzubillahMeaning: "I seek refuge in Allah from the outcast Shaitan.",
+    bismillah: "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ",
+    bismillahMeaning: "In the name of Allah, the Entirely Merciful, the Especially Merciful."
   }
 };

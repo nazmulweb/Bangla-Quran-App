@@ -8,6 +8,8 @@ import SearchResult from './SearchResult';
 import { translations } from '../utils/translations';
 import { surahNamesBn } from '../utils/surahNamesBn';
 import { toLocaleNumber } from '../utils/numberConverter';
+import meccaIcon from '../assets/mecca.svg';
+import madinahIcon from '../assets/madinah.jpg';
 // import Button from '@material-ui/core/Button';
 
 const baseUrl = process.env.REACT_APP_QURAN_BASE_URL;
@@ -39,6 +41,7 @@ const Surah = ({language, searchResult}) => {
         axios.all([arTranslateSurah, bnTranslateSurah])
             .then(
                 axios.spread((...datas)=> {
+                    console.log(datas)
                     let arSurah = datas[0].data.data.ayahs;
                     let bnSurah = datas[1].data.data.ayahs;
 
@@ -85,18 +88,37 @@ const Surah = ({language, searchResult}) => {
             {
             searchResultValue ? <SearchResult data={searchResultValue} language={language} /> :
             <div className="surah__container">
-                <div className="surah__header">
-                    <div className="surah__name">
-                       {t.nameLabel} {surahDisplayName}
+                <div className="surah__headerCard">
+                    <img 
+                        src={madinahIcon} 
+                        alt={surahName.revelationType} 
+                        className="surah__headerIcon" 
+                    />
+                    <div className="surah__headerTop">
+                        <div className="surah__name">
+                           {t.nameLabel} {surahDisplayName}
+                        </div>
+                        <div className="surah__numberOfAyat">
+                           {t.ayahsLabel} {toLocaleNumber(surahName.numberOfAyahs, language)}
+                        </div>
                     </div>
-                    <div className="surah__numberOfAyat">
-                       {t.ayahsLabel} {toLocaleNumber(surahName.numberOfAyahs, language)}
+                    <div className="surah__bismillahWrapper">
+                        <div className="surah__bismillahArabic">{t.auzubillah}</div>
+                        <div className="surah__bismillahTranslate">{t.auzubillahMeaning}</div>
+                        {surahNumber !== 9 && (
+                            <>
+                                <div className="surah__bismillahArabic">{t.bismillah}</div>
+                                <div className="surah__bismillahTranslate">{t.bismillahMeaning}</div>
+                            </>
+                        )}
                     </div>
                 </div>
                 <div className="surah__body">
                     <div>
                         { urahWithTranslate[0] !== undefined &&
                             urahWithTranslate[0].map((ayah, i)=>{
+                                // Skip rendering the first Ayah for Surah Fatiha because the Bismillah is already in the header
+                                if (surahNumber === 1 && i === 0) return null;
 
                                 let bangla = '';
 
@@ -109,7 +131,18 @@ const Surah = ({language, searchResult}) => {
                                         <div className="surah__ayahNumber"> {toLocaleNumber(i + 1, language)} </div>
                                         <div className="surah__ayahText"> 
                                         {/* <Button variant="contained" color="primary" className="surah__favorite" onClick={()=> setFavorite([ayah.number, ...favorite])}>Love</Button> */}
-                                            <p className="surah__arabicTranslate">{ayah.text}</p>
+                                            <p className="surah__arabicTranslate">
+                                                {i === 0 && surahNumber !== 1 && surahNumber !== 9 
+                                                  ? ayah.text
+                                                      .replace('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ', '')
+                                                      .replace('بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ', '')
+                                                      .replace('بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ', '')
+                                                      .replace('بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِيمِ', '')
+                                                      .replace('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ', '')
+                                                      .trim() 
+                                                  : ayah.text
+                                                }
+                                            </p>
                                             <p>{bangla}</p>  
                                         </div>
                                     </div>

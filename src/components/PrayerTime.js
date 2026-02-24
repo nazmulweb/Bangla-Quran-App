@@ -34,9 +34,10 @@ const PrayerTime = ({ language }) => {
     const [prayerTime, setPrayerTime] = useState([]);
     const [loading, setLoading ] = useState(true);
     const [time, setTime] = useState(null)
+    const [locationDisplay, setLocationDisplay] = useState("Loading...");
     
     const t = translations[language] || translations["en.asad"];
-    const locationName = `${prayerCity}, ${prayerCountry}`
+    const defaultLocationName = `${prayerCity}, ${prayerCountry}`
       .split(",")
       .map((part) =>
         part
@@ -48,17 +49,56 @@ const PrayerTime = ({ language }) => {
       .join(", ");
 
     useEffect(()=>{
-        setLoading(true)
-        axios
-        .get(`${baseUrl}v1/timingsByCity?city=${encodeURIComponent(prayerCity)}&country=${encodeURIComponent(prayerCountry)}&method=8`)
-        .then(res=>{
-          setPrayerTime(res.data.data)
-          setLoading(false)
-        })
-        .catch(err =>{
-            console.log("error:", err)
-        })
-    },[])
+        let mounted = true;
+        setLoading(true);
+
+        const fetchPrayerTimes = (latitude, longitude, method = 1) => {
+            const url = latitude && longitude 
+                ? `${baseUrl}v1/timings?latitude=${latitude}&longitude=${longitude}&method=${method}`
+                : `${baseUrl}v1/timingsByCity?city=${encodeURIComponent(prayerCity)}&country=${encodeURIComponent(prayerCountry)}&method=${method}`;
+
+            axios
+            .get(url)
+            .then(res=>{
+                if (mounted) {
+                    setPrayerTime(res.data.data);
+                    setLoading(false);
+                }
+            })
+            .catch(err =>{
+                if (mounted) {
+                    console.log("error:", err);
+                    setLoading(false);
+                }
+            });
+        };
+
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    if (mounted) {
+                        setLocationDisplay(language === "bn.bengali" ? "আপনার অবস্থান" : "Your Location");
+                        fetchPrayerTimes(position.coords.latitude, position.coords.longitude, 1);
+                    }
+                },
+                (error) => {
+                    if (mounted) {
+                        console.log("Geolocation error:", error);
+                        setLocationDisplay(defaultLocationName);
+                        fetchPrayerTimes(null, null, 1);
+                    }
+                },
+                { timeout: 10000 }
+            );
+        } else {
+            setLocationDisplay(defaultLocationName);
+            fetchPrayerTimes(null, null, 1);
+        }
+
+        return () => {
+            mounted = false;
+        };
+    },[language, defaultLocationName])
 
     useEffect(()=>{
         // time interval
@@ -80,7 +120,7 @@ const PrayerTime = ({ language }) => {
         <div className="prayertime">
             <h2 className="prayertime__location">
                 <span className="prayertime__locationLabel">{t.prayerLocation}</span>
-                <span className="prayertime__locationValue">{locationName}</span>
+                <span className="prayertime__locationValue">{locationDisplay}</span>
             </h2>
             <TableContainer component={Paper} className="prayertime__tableContainer">
                 <Table className={classes.table} aria-label="simple table">

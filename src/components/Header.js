@@ -15,7 +15,11 @@ const Header = ({onclick, language, search, onMenuClick}) =>  {
 
     //set value to state 
     const handleSearchValue = (e) =>{
-        setSearchValue(e.target.value);
+        const val = e.target.value;
+        setSearchValue(val);
+        if (val === "") {
+            search("");
+        }
     }
     
     // reset the state 
