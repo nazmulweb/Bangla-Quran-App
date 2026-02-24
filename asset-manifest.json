@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/Bangla-Quran-App/static/css/main.cd31d10d.css",
+    "main.js": "/Bangla-Quran-App/static/js/main.94e4f80f.js",
+    "static/js/422.46d302f2.chunk.js": "/Bangla-Quran-App/static/js/422.46d302f2.chunk.js",
+    "static/media/quran-app-bg.jpg": "/Bangla-Quran-App/static/media/quran-app-bg.292b8169f55e8b9efcb6.jpg",
+    "static/media/sunset.svg": "/Bangla-Quran-App/static/media/sunset.fd6b60b0fc46510403f46f679a9a9e2a.svg",
+    "static/media/moon.svg": "/Bangla-Quran-App/static/media/moon.dcc20c16899108bb68e5d79aae0c5136.svg",
+    "static/media/clock.svg": "/Bangla-Quran-App/static/media/clock.e3b0b7e2d7a638cc83794bfdd4cf88d9.svg",
+    "static/media/sunrise.svg": "/Bangla-Quran-App/static/media/sunrise.95a867c18f87e63f38941e2caa3350e4.svg",
+    "static/media/sun.svg": "/Bangla-Quran-App/static/media/sun.3a8fe7b4f4ee110480f8b3ad266f8148.svg",
+    "index.html": "/Bangla-Quran-App/index.html",
+    "main.cd31d10d.css.map": "/Bangla-Quran-App/static/css/main.cd31d10d.css.map",
+    "main.94e4f80f.js.map": "/Bangla-Quran-App/static/js/main.94e4f80f.js.map",
+    "422.46d302f2.chunk.js.map": "/Bangla-Quran-App/static/js/422.46d302f2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cd31d10d.css",
+    "static/js/main.94e4f80f.js"
+  ]
+}
