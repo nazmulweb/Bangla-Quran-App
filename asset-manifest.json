@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.19c56226.css",
-    "main.js": "./static/js/main.cf81b7ef.js",
+    "main.css": "./static/css/main.db8274cc.css",
+    "main.js": "./static/js/main.6139ff36.js",
     "static/js/422.46d302f2.chunk.js": "./static/js/422.46d302f2.chunk.js",
     "static/media/quran-app-bg.jpg": "./static/media/quran-app-bg.292b8169f55e8b9efcb6.jpg",
     "static/media/sunset.svg": "./static/media/sunset.fd6b60b0fc46510403f46f679a9a9e2a.svg",
@@ -10,12 +10,12 @@
     "static/media/sunrise.svg": "./static/media/sunrise.95a867c18f87e63f38941e2caa3350e4.svg",
     "static/media/sun.svg": "./static/media/sun.3a8fe7b4f4ee110480f8b3ad266f8148.svg",
     "index.html": "./index.html",
-    "main.19c56226.css.map": "./static/css/main.19c56226.css.map",
-    "main.cf81b7ef.js.map": "./static/js/main.cf81b7ef.js.map",
+    "main.db8274cc.css.map": "./static/css/main.db8274cc.css.map",
+    "main.6139ff36.js.map": "./static/js/main.6139ff36.js.map",
     "422.46d302f2.chunk.js.map": "./static/js/422.46d302f2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.19c56226.css",
-    "static/js/main.cf81b7ef.js"
+    "static/css/main.db8274cc.css",
+    "static/js/main.6139ff36.js"
   ]
 }
