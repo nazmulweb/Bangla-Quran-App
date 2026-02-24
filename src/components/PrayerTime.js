@@ -16,26 +16,41 @@ import Sun from '../assets/sun.svg';
 import sunSet from '../assets/sunset.svg';
 import sunRise from '../assets/sunrise.svg';
 import Clock from '../assets/clock.svg';
+import { translations } from '../utils/translations';
 
 const useStyles = makeStyles({
     table: {
-      minWidth: 650,
+      minWidth: 0,
     },
   });
 
 const baseUrl = process.env.REACT_APP_PRAYER_TIME_URL;
+const prayerCity = process.env.REACT_APP_PRAYER_CITY || "dhaka";
+const prayerCountry = process.env.REACT_APP_PRAYER_COUNTRY || "bangladesh";
 
 
-const PrayerTime = () => {
+const PrayerTime = ({ language }) => {
     const classes = useStyles();
     const [prayerTime, setPrayerTime] = useState([]);
     const [loading, setLoading ] = useState(true);
     const [time, setTime] = useState(null)
+    
+    const t = translations[language] || translations["en.asad"];
+    const locationName = `${prayerCity}, ${prayerCountry}`
+      .split(",")
+      .map((part) =>
+        part
+          .trim()
+          .split(/[\s_-]+/)
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")
+      )
+      .join(", ");
 
     useEffect(()=>{
         setLoading(true)
         axios
-        .get(`${baseUrl}v1/timingsByCity?city=dhaka&country=bangladesh&method=8`)
+        .get(`${baseUrl}v1/timingsByCity?city=${encodeURIComponent(prayerCity)}&country=${encodeURIComponent(prayerCountry)}&method=8`)
         .then(res=>{
           setPrayerTime(res.data.data)
           setLoading(false)
@@ -47,16 +62,10 @@ const PrayerTime = () => {
 
     useEffect(()=>{
         // time interval
-        setInterval(()=>{
+        const interval = setInterval(()=>{
             setTime(new Date().toLocaleTimeString())
         }, 1000)
-    }, [])
-
-    useEffect(()=>{
-        // clear time 
-        return ()=>{
-            clearInterval(setTime(null))
-        }
+        return ()=> clearInterval(interval)
     }, [])
 
     // time format function 
@@ -69,7 +78,11 @@ const PrayerTime = () => {
 
     return (
         <div className="prayertime">
-            <TableContainer component={Paper}>
+            <h2 className="prayertime__location">
+                <span className="prayertime__locationLabel">{t.prayerLocation}</span>
+                <span className="prayertime__locationValue">{locationName}</span>
+            </h2>
+            <TableContainer component={Paper} className="prayertime__tableContainer">
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
@@ -77,7 +90,7 @@ const PrayerTime = () => {
                                 <div className="prayertime__headerWrapper">
                                     <div><img src={sunRise} alt="Sun"/></div>
                                     <div>{timeFormater(prayerTime.timings.Sunrise)}</div>
-                                    <small>(Sunrise)</small>
+                                    <small>({t.sunrise})</small>
                                 </div>
                             </TableCell>
                             <TableCell  className="prayertime__clock" align="left">
@@ -90,30 +103,30 @@ const PrayerTime = () => {
                                 <div className="prayertime__headerWrapper">
                                     <div><img src={sunSet} alt="Sun"/></div>
                                     <div>{timeFormater(prayerTime.timings.Sunset)}</div>
-                                    <small>(Sunset)</small>
+                                    <small>({t.sunset})</small>
                                 </div>
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         <TableRow className="prayertime__tableRow">
-                            <TableCell colSpan={3} className="prayertime__prayerName"><img src={Sun} alt="Sun"/>Fajr</TableCell>
+                            <TableCell colSpan={3} className="prayertime__prayerName"><img src={Sun} alt="Sun"/>{t.fajr}</TableCell>
                             <TableCell colSpan={3} className="prayertime__prayerTime" align="right">{timeFormater(prayerTime.timings.Fajr)}</TableCell>
                         </TableRow>
                         <TableRow className="prayertime__tableRow">
-                            <TableCell className="prayertime__prayerName"><img src={Sun} alt="Sun"/>Dhuhr</TableCell>
+                            <TableCell className="prayertime__prayerName"><img src={Sun} alt="Sun"/>{t.dhuhr}</TableCell>
                             <TableCell colSpan={3} className="prayertime__prayerTime" align="right">{timeFormater(prayerTime.timings.Dhuhr)}</TableCell>
                         </TableRow>
                         <TableRow className="prayertime__tableRow">
-                            <TableCell className="prayertime__prayerName"><img src={Sun} alt="Sun"/>Asr</TableCell>
+                            <TableCell className="prayertime__prayerName"><img src={Sun} alt="Sun"/>{t.asr}</TableCell>
                             <TableCell colSpan={3} className="prayertime__prayerTime" align="right">{timeFormater(prayerTime.timings.Asr)}</TableCell>
                         </TableRow>
                         <TableRow className="prayertime__tableRow">
-                            <TableCell className="prayertime__prayerName"><img src={Moon} alt="Moon"/>Maghrib</TableCell>
+                            <TableCell className="prayertime__prayerName"><img src={Moon} alt="Moon"/>{t.maghrib}</TableCell>
                             <TableCell colSpan={3} className="prayertime__prayerTime" align="right">{timeFormater(prayerTime.timings.Maghrib)}</TableCell>
                         </TableRow>
                         <TableRow className="prayertime__tableRow">
-                            <TableCell className="prayertime__prayerName"><img src={Moon} alt="Moon"/>Isha</TableCell>
+                            <TableCell className="prayertime__prayerName"><img src={Moon} alt="Moon"/>{t.isha}</TableCell>
                             <TableCell colSpan={3} className="prayertime__prayerTime" align="right">{timeFormater(prayerTime.timings.Isha)}</TableCell>
                         </TableRow>
                     </TableBody>

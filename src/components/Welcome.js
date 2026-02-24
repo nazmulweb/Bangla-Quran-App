@@ -4,6 +4,7 @@ import './Welcome.css';
 import HistoryIcon from '@material-ui/icons/History';
 import axios from 'axios';
 import Loading from './Loading';
+import { translations } from '../utils/translations';
 
 const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
 
@@ -12,6 +13,8 @@ const Welcome = ({language}) => {
     const [loading, setLoading ] = useState(true);
     const [resetnSurah, setResentSurah] = useState(null);
     // const [favorite, setFavorite] = useState();
+    
+    const t = translations[language] || translations["en.asad"];
 
     useEffect(()=>{
         axios
@@ -28,10 +31,11 @@ const Welcome = ({language}) => {
     useEffect(()=> {
         // get recent read surah data 
         if(JSON.parse(localStorage.getItem("surah"))){
-            var {number, englishName} = JSON.parse(localStorage.getItem("surah"));
+            var {number, englishName, name} = JSON.parse(localStorage.getItem("surah"));
             setResentSurah({
                 number,
-                englishName  
+                englishName,
+                name 
             })
         }
     },[])
@@ -44,7 +48,7 @@ const Welcome = ({language}) => {
                 <h4 className="welcome__ayah">{ayah}</h4>
             </div>
             {
-             resetnSurah ? <Link to={`/surah/${resetnSurah.number}`} className="welcome__recentRead"><HistoryIcon />Recent Read: {resetnSurah.englishName.toLowerCase()}</Link> : "" 
+             resetnSurah ? <Link to={`/surah/${resetnSurah.number}`} className="welcome__recentRead"><HistoryIcon />{t.recentRead}: {language === "bn.bengali" ? resetnSurah.name || resetnSurah.englishName.toLowerCase() : resetnSurah.englishName.toLowerCase()}</Link> : "" 
             }
         </div>
     )

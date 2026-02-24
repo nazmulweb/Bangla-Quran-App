@@ -1,0 +1,40 @@
+export const translations = {
+  "bn.bengali": {
+    searchPlaceholder: "শব্দ দিয়ে খুঁজুন",
+    searchBtn: "অনুসন্ধান",
+    prayerTimeBtn: "নামাজের সময়",
+    quranApp: "কুরআন অ্যাপ",
+    recentRead: "সর্বশেষ পাঠ",
+    totalAyahFound: "মোট আয়াত পাওয়া গেছে:",
+    noResultFound: "কোনো ফলাফল পাওয়া যায়নি",
+    nameLabel: "নাম:",
+    ayahsLabel: "আয়াত:",
+    sunrise: "সূর্যোদয়",
+    sunset: "সূর্যাস্ত",
+    prayerLocation: "লোকেশন",
+    fajr: "ফজর",
+    dhuhr: "যোহর",
+    asr: "আসর",
+    maghrib: "মাগরিব",
+    isha: "ইশা"
+  },
+  "en.asad": {
+    searchPlaceholder: "Search by word",
+    searchBtn: "Search",
+    prayerTimeBtn: "Prayer time",
+    quranApp: "Quran App",
+    recentRead: "Recent read",
+    totalAyahFound: "Total Ayah found:",
+    noResultFound: "No result found",
+    nameLabel: "Name:",
+    ayahsLabel: "Ayahs:",
+    sunrise: "Sunrise",
+    sunset: "Sunset",
+    prayerLocation: "Location",
+    fajr: "Fajr",
+    dhuhr: "Dhuhr",
+    asr: "Asr",
+    maghrib: "Maghrib",
+    isha: "Isha"
+  }
+};

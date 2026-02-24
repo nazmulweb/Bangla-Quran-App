@@ -1,5 +1,36 @@
 .prayertime {
   padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.prayertime__tableContainer {
+  overflow-x: auto;
+}
+
+.prayertime__location {
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-main);
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 10px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.prayertime__locationLabel {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.prayertime__locationValue {
+  color: var(--primary);
+  font-weight: 700;
 }
 
 .prayertime__tableRow img {
@@ -11,33 +42,92 @@
   display: flex !important;
   align-items: center;
   font-size: 16px !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
+  color: var(--text-main);
 }
 
 .prayertime__prayerTime {
   font-size: 16px !important;
   font-weight: 500 !important;
+  color: var(--text-muted);
 }
 
 .prayertime__sunrise,
 .prayertime__clock,
 .prayertime__sunset {
   text-align: center;
+  background: var(--surface-color);
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
 }
 
 .prayertime__sunrise img,
 .prayertime__clock img,
 .prayertime__sunset img {
   width: 50px;
+  margin-bottom: 10px;
 }
 
 .prayertime__clock img {
   margin-left: 12px;
 }
 
-.prayertime__headerWrapper {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center; */
+@media only screen and (max-width: 991px) {
+  .prayertime {
+    padding: 24px;
+  }
+
+  .prayertime__location {
+    font-size: 15px;
+  }
+
+  .prayertime__sunrise,
+  .prayertime__clock,
+  .prayertime__sunset {
+    padding: 14px 8px !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .prayertime {
+    padding: 16px;
+  }
+
+  .prayertime__location {
+    font-size: 14px;
+    margin-bottom: 10px;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+
+  .prayertime .MuiTableCell-root {
+    padding: 10px 8px !important;
+  }
+
+  .prayertime__tableRow img {
+    width: 22px;
+    margin-right: 10px;
+  }
+
+  .prayertime__prayerName,
+  .prayertime__prayerTime {
+    font-size: 13px !important;
+  }
+
+  .prayertime__sunrise img,
+  .prayertime__clock img,
+  .prayertime__sunset img {
+    width: 26px;
+    margin-bottom: 6px;
+  }
+
+  .prayertime__sunrise div,
+  .prayertime__clock div,
+  .prayertime__sunset div {
+    font-size: 12px;
+  }
 }

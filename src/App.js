@@ -77,12 +77,12 @@ function App() {
         />
         <div className="app__container">
           <div className="app__sidebar">
-            <Sidebar onclick={sidebarClickHandler} surahs={surahs} />
+            <Sidebar onclick={sidebarClickHandler} surahs={surahs} language={language} />
           </div>
             <div className="app__body">
             <Switch>
                 <Route exact path="/" children={ <Welcome language={language} />} />
-                <Route path="/prayer-time" children={ <PrayerTime />} />
+                <Route path="/prayer-time" children={ <PrayerTime language={language} />} />
                 <Route path="/surah/:id" children={ <Surah 
                                                     searchResult={searchValue}
                                                     language={language}

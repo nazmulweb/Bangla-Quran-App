@@ -1,17 +1,19 @@
 .header {
-  margin-left: 280px;
-  width: calc(100% - 280px);
+  margin-left: var(--sidebar-width, 280px);
+  width: calc(100% - var(--sidebar-width, 280px));
   position: fixed;
   z-index: 10;
   top: 0;
-  box-shadow: 0 0 20px rgba(89, 102, 122, 0.1);
-  transition: 0.5s;
-  background-color: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
   padding: 15px 30px;
-  height: 82px;
+  min-height: var(--header-height, 82px);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .header__container {
@@ -23,39 +25,134 @@
 
 .header__prayerTime {
   margin-right: 15px !important;
+  border-radius: var(--radius-full) !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  background-color: var(--primary) !important;
+  color: #fff !important;
+  border: 1px solid var(--primary) !important;
+}
+
+.header__prayerTime:hover {
+  background-color: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+.header__menuBtn {
+  display: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--surface-color);
+  color: var(--text-main);
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.header__menuBtn .MuiSvgIcon-root {
+  margin-right: 0;
+  font-size: 1.35rem !important;
 }
 
 .header__search {
   display: flex;
   align-items: center;
+  /* min-width: 0;
+  flex: 1;
+  max-width: 560px; */
 }
+
+.header__searchInputWrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+} 
 
 .header__searchInput {
   font: inherit;
-  color: currentColor;
+  color: var(--text-main);
   width: 100%;
   border: 0;
-  height: 1.1876em;
+  height: 2.1876em;
   margin: 0;
   display: block;
-  padding: 6px 10px 7px 10px;
+  padding: 10px 16px;
   min-width: 0;
-  background: none;
-  box-sizing: content-box;
+  background: var(--bg-color);
+  box-sizing: border-box;
   letter-spacing: inherit;
   -webkit-tap-highlight-color: transparent;
-  border: 2px solid #303f9f;
-  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full) 0 0 var(--radius-full);
+  transition: var(--transition);
+  padding-right: 38px;
 }
 
 .header__searchInput:focus {
-  outline: #303f9f;
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-light);
+  background: var(--surface-color);
 }
 
 button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.header__btn.MuiButton-containedPrimary.MuiButton-disableElevation {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  margin-left: -3px;
+  border-top-right-radius: var(--radius-full);
+  border-bottom-right-radius: var(--radius-full);
+  margin-left: -1px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  text-transform: none;
+  font-weight: 500;
+  background-color: var(--primary);
+  min-width: 48px;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.header__btn.MuiButton-containedPrimary.MuiButton-disableElevation .MuiSvgIcon-root {
+  margin-right: 0;
+  font-size: 1.1rem !important;
+}
+
+.header__clearBtn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--primary-light);
+  color: var(--primary-hover);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.header__clearBtn .MuiSvgIcon-root {
+  margin-right: 0;
+  font-size: 0.95rem !important;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.header__btn.MuiButton-containedPrimary.MuiButton-disableElevation:hover {
+  background-color: var(--primary-hover);
+}
+
+.header__langauge > button {
+  border-radius: var(--radius-full) !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  background-color: var(--primary) !important;
+}
+
+.header__langauge > button:hover {
+  background-color: var(--primary-hover) !important;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 992px) {
@@ -78,5 +175,39 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.header__btn.MuiButt
   .header {
     margin-left: 0px;
     width: 100%;
+    padding: 12px 14px;
+  }
+
+  .header__container {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .header__menuBtn {
+    display: inline-flex;
+  }
+
+  .header__langauge {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+  }
+
+  .header__search {
+    order: 3;
+    width: 100%;
+    max-width: none;
+    align-items: center;
+     justify-content: center;
+  }
+
+  .header__searchInput {
+    padding: 9px 12px;
+    font-size: 14px;
+  }
+
+  .MuiButton-root {
+    padding: 8px 12px !important;
+    font-size: 0.78rem !important;
   }
 }

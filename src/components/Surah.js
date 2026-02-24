@@ -5,6 +5,7 @@ import axios from 'axios';
 import Loading from './Loading';
 import './Surah.css';
 import SearchResult from './SearchResult';
+import { translations } from '../utils/translations';
 // import Button from '@material-ui/core/Button';
 
 const baseUrl = process.env.REACT_APP_QURAN_BASE_URL;
@@ -21,7 +22,8 @@ const Surah = ({language, searchResult}) => {
     
     const [urahWithTranslate, setTestNewSurah] = useState([]);
     // const [favorite, setFavorite] = useState([]);
-
+    
+    const t = translations[language] || translations["en.asad"];
 
     const fetchData = (id) => {
 
@@ -72,17 +74,17 @@ const Surah = ({language, searchResult}) => {
     return (
         <div className="surah">
             <Helmet>
-                <title>{surahName !== undefined && surahName.englishName}</title>
+                <title>{surahName !== undefined && (language === "bn.bengali" ? surahName.name : surahName.englishName)}</title>
             </Helmet>
             {
-            searchResultValue ? <SearchResult data={searchResultValue}/> :
+            searchResultValue ? <SearchResult data={searchResultValue} language={language} /> :
             <div className="surah__container">
                 <div className="surah__header">
                     <div className="surah__name">
-                       Name: {surahName.englishName}
+                       {t.nameLabel} {language === "bn.bengali" ? surahName.name : surahName.englishName}
                     </div>
                     <div className="surah__numberOfAyat">
-                       Ayahs: {surahName.numberOfAyahs}
+                       {t.ayahsLabel} {surahName.numberOfAyahs}
                     </div>
                 </div>
                 <div className="surah__body">
