@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Bangla-Quran-App/static/css/main.cd31d10d.css",
-    "main.js": "/Bangla-Quran-App/static/js/main.94e4f80f.js",
+    "main.js": "/Bangla-Quran-App/static/js/main.9f09f222.js",
     "static/js/422.46d302f2.chunk.js": "/Bangla-Quran-App/static/js/422.46d302f2.chunk.js",
     "static/media/quran-app-bg.jpg": "/Bangla-Quran-App/static/media/quran-app-bg.292b8169f55e8b9efcb6.jpg",
     "static/media/sunset.svg": "/Bangla-Quran-App/static/media/sunset.fd6b60b0fc46510403f46f679a9a9e2a.svg",
@@ -11,11 +11,11 @@
     "static/media/sun.svg": "/Bangla-Quran-App/static/media/sun.3a8fe7b4f4ee110480f8b3ad266f8148.svg",
     "index.html": "/Bangla-Quran-App/index.html",
     "main.cd31d10d.css.map": "/Bangla-Quran-App/static/css/main.cd31d10d.css.map",
-    "main.94e4f80f.js.map": "/Bangla-Quran-App/static/js/main.94e4f80f.js.map",
+    "main.9f09f222.js.map": "/Bangla-Quran-App/static/js/main.9f09f222.js.map",
     "422.46d302f2.chunk.js.map": "/Bangla-Quran-App/static/js/422.46d302f2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cd31d10d.css",
-    "static/js/main.94e4f80f.js"
+    "static/js/main.9f09f222.js"
   ]
 }
