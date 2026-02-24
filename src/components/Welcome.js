@@ -44,12 +44,21 @@ const Welcome = ({language}) => {
 
     return (
         <div className="welcome">
-            <div className="welcome__wrapper">
-                <h4 className="welcome__ayah">{ayah}</h4>
+            <div className="welcome__content">
+                <div className="welcome__wrapper">
+                    <h4 className="welcome__ayah">{ayah}</h4>
+                </div>
+                {
+                 resetnSurah ? (
+                    <Link to={`/surah/${resetnSurah.number}`} className="welcome__recentRead">
+                        <HistoryIcon className="welcome__recentIcon" />
+                        <span className="welcome__recentText">
+                            {t.recentRead}: <span className="welcome__recentName">{language === "bn.bengali" ? resetnSurah.name || resetnSurah.englishName.toLowerCase() : resetnSurah.englishName.toLowerCase()}</span>
+                        </span>
+                    </Link>
+                 ) : null 
+                }
             </div>
-            {
-             resetnSurah ? <Link to={`/surah/${resetnSurah.number}`} className="welcome__recentRead"><HistoryIcon />{t.recentRead}: {language === "bn.bengali" ? resetnSurah.name || resetnSurah.englishName.toLowerCase() : resetnSurah.englishName.toLowerCase()}</Link> : "" 
-            }
         </div>
     )
 }

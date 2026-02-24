@@ -7,96 +7,166 @@
   background-size: cover;
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .welcome::after {
   content: "";
   position: absolute;
-  background: black;
+  /* Darker gradient overlay to make things pop more */
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.7));
   left: 0;
   top: 0;
   z-index: -1;
   height: 100%;
   width: 100%;
-  opacity: 0.5;
 }
 
-.welcome__recentRead {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--surface-color);
-  padding: 14px 28px;
-  bottom: 60px;
-  border-radius: var(--radius-full);
-  text-decoration: none;
-  color: var(--primary);
-  font-size: 18px;
-  font-weight: 600;
+.welcome__content {
+  width: 100%;
+  height: 100%;
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  text-transform: capitalize;
-  box-shadow: var(--shadow-lg);
-  transition: var(--transition);
-}
-
-.welcome__recentRead:hover {
-  transform: translateX(-50%) translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-}
-
-.welcome__recentRead .MuiSvgIcon-root {
-  font-size: 2rem !important;
-  margin-right: 12px;
+  justify-content: center;
 }
 
 .welcome__wrapper {
-  width: 100%;
-  height: 140px;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  position: absolute;
-  top: 100px;
+  width: 90%;
+  max-width: 800px;
+  min-height: 180px;
+  /* Premium Glassmorphism */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  margin-bottom: 2rem;
+  
+  /* Animation */
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .welcome__ayah {
-  opacity: 1;
-  position: absolute;
-  z-index: 111;
-  color: #fff;
-  font-size: 26px;
+  color: #ffffff;
+  font-size: 32px;
+  font-family: 'Amiri', serif;
   font-weight: 500;
+  line-height: 1.6;
   letter-spacing: 0.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.welcome__recentRead {
+  /* Position relatively instead of absolutely */
+  display: inline-flex;
+  align-items: center;
+  
+  /* Glass pill design */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  padding: 16px 32px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Animation */
+  opacity: 0;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+.welcome__recentRead:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.welcome__recentText {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.welcome__recentName {
+  color: #a7f3d0; /* A soft mint green to make the surah name pop */
+  font-weight: 700;
+}
+
+.welcome__recentIcon {
+  font-size: 2rem !important;
+  margin-right: 12px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media only screen and (max-width: 767px) {
   .welcome__wrapper {
-    top: 80px;
-    height: 120px;
-    padding: 0 16px;
+    width: 95%;
+    min-height: 140px;
+    padding: 24px;
+    margin-top: -60px; /* Adjust vertical centering on mobile */
   }
 
   .welcome__ayah {
-    font-size: 18px;
+    font-size: 22px;
     line-height: 1.5;
   }
 
   .welcome__recentRead {
-    bottom: 30px;
-    width: calc(100% - 24px);
-    max-width: 430px;
-    font-size: 14px;
-    padding: 12px 16px;
+    width: 90%;
+    max-width: 400px;
+    justify-content: center;
+    font-size: 16px;
+    padding: 14px 20px;
+    margin-top: 20px;
   }
 
-  .welcome__recentRead .MuiSvgIcon-root {
-    font-size: 1.45rem !important;
+  .welcome__recentIcon {
+    font-size: 1.5rem !important;
+    margin-right: 8px;
   }
 }
