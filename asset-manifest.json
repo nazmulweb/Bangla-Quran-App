@@ -1,9 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.ce6b97bb.css",
-    "main.js": "/static/js/main.72880bc0.js",
+    "main.css": "/static/css/main.7408a3aa.css",
+    "main.js": "/static/js/main.d2508121.js",
     "static/js/422.46d302f2.chunk.js": "/static/js/422.46d302f2.chunk.js",
     "static/media/quran-app-bg.jpg": "/static/media/quran-app-bg.292b8169f55e8b9efcb6.jpg",
+    "static/media/UthmanicHafs1Ver18.woff2": "/static/media/UthmanicHafs1Ver18.49de10bce3c74f97ca96.woff2",
+    "static/media/indopak-nastaleeq-waqf-lazim-v4.2.1.woff2": "/static/media/indopak-nastaleeq-waqf-lazim-v4.2.1.96b63391c4bc4cfa4e57.woff2",
     "static/media/madinah.jpg": "/static/media/madinah.7a5a0113d8e461c50674.jpg",
     "static/media/sunset.svg": "/static/media/sunset.fd6b60b0fc46510403f46f679a9a9e2a.svg",
     "static/media/moon.svg": "/static/media/moon.dcc20c16899108bb68e5d79aae0c5136.svg",
@@ -11,13 +13,12 @@
     "static/media/sunrise.svg": "/static/media/sunrise.95a867c18f87e63f38941e2caa3350e4.svg",
     "static/media/sun.svg": "/static/media/sun.3a8fe7b4f4ee110480f8b3ad266f8148.svg",
     "index.html": "/index.html",
-    "static/media/mecca.svg": "/static/media/mecca.b0a190e60d70bc82937a227f279db32f.svg",
-    "main.ce6b97bb.css.map": "/static/css/main.ce6b97bb.css.map",
-    "main.72880bc0.js.map": "/static/js/main.72880bc0.js.map",
+    "main.7408a3aa.css.map": "/static/css/main.7408a3aa.css.map",
+    "main.d2508121.js.map": "/static/js/main.d2508121.js.map",
     "422.46d302f2.chunk.js.map": "/static/js/422.46d302f2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ce6b97bb.css",
-    "static/js/main.72880bc0.js"
+    "static/css/main.7408a3aa.css",
+    "static/js/main.d2508121.js"
   ]
 }
