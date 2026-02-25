@@ -1,5 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap");
-@import url("https://cdn.jsdelivr.net/npm/arabic-fonts@0.2.0/src/css/arabic-fonts.min.css");
+/* @import url("https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap"); */
+/* @import url("https://cdn.jsdelivr.net/npm/arabic-fonts@0.2.0/src/css/arabic-fonts.min.css"); */
+
+@font-face {
+  font-family: "IndoPak";
+  src: url("./assets/fonts/indopak-nastaleeq-waqf-lazim-v4.2.1.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "UthmaniHafs";
+  src: url("./assets/fonts/UthmanicHafs1Ver18.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
 
 :root {
   --primary: #0b1f3b;
@@ -10,6 +26,9 @@
   --text-main: #0b1f3b;
   --text-muted: #355070;
   --border-color: #c9d8ea;
+  --quran-font-stack: "IndoPak", "UthmaniHafs", serif;
+  --arabic-font-size: 38px;
+  --arabic-font-weight: 400;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
@@ -29,13 +48,41 @@
 
 body {
   margin: 0;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  /* font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    sans-serif; */
+  font-family: IndoPak;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-color);
   color: var(--text-main);
+}
+
+.font-debug body::before {
+  content: "FONT DEBUG MODE";
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  z-index: 9999;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #7c2d12;
+  background: #ffedd5;
+  border: 1px solid #fdba74;
+  border-radius: 9999px;
+  padding: 5px 9px;
+}
+
+.font-debug .surah__arabicTranslate,
+.font-debug .surah__bismillahArabic,
+.font-debug .searchResult__arabicTranslate {
+  font-family: var(--quran-font-stack) !important;
+  font-synthesis: none;
+  font-kerning: normal;
+  font-feature-settings: "liga" 1, "calt" 1;
+  outline: 1px dashed rgba(234, 88, 12, 0.35);
+  background: rgba(255, 247, 237, 0.45);
 }
 
 code {

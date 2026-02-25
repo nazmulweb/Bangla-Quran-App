@@ -16,6 +16,16 @@ import {
 
 // base url 
 const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
+const ARABIC_FONT_SIZE_KEY = "arabic_font_size";
+const DEFAULT_ARABIC_FONT_SIZE = 38;
+
+const getStoredNumber = (key, fallback, min, max, step = 1) => {
+  if (typeof window === "undefined") return fallback;
+  const raw = Number(localStorage.getItem(key));
+  if (Number.isNaN(raw)) return fallback;
+  const clamped = Math.min(max, Math.max(min, raw));
+  return Math.round(clamped / step) * step;
+};
 
 function App() {
 
@@ -27,6 +37,9 @@ function App() {
   const [loading, setLoading ] = useState(true);
   const [language, setLangauge] = useState("bn.bengali")
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [arabicFontSize, setArabicFontSize] = useState(() =>
+    getStoredNumber(ARABIC_FONT_SIZE_KEY, DEFAULT_ARABIC_FONT_SIZE, 24, 52, 1)
+  );
 
 
   useEffect(()=>{
@@ -36,7 +49,6 @@ function App() {
     .get(`${baseUrl}v1/surah`)
     .then(res=>{
       // set suran name to state 
-      console.log(res.data.data)
       setSurahs(res.data.data)
       setLoading(false)
     })
@@ -48,6 +60,14 @@ function App() {
   const changeLanguage = () =>{
     setLangauge(language === "bn.bengali" ? "en.asad" : "bn.bengali" )
   }
+
+  const updateArabicFontSize = (nextSize) => {
+    setArabicFontSize(Math.min(52, Math.max(24, nextSize)));
+  };
+
+  const resetArabicFontSettings = () => {
+    setArabicFontSize(DEFAULT_ARABIC_FONT_SIZE);
+  };
 
   // search function 
   const search = (searchText) => {
@@ -71,6 +91,11 @@ function App() {
     setIsSidebarOpen(false)
   }
 
+  useEffect(() => {
+    document.documentElement.style.setProperty("--arabic-font-size", `${arabicFontSize}px`);
+    localStorage.setItem(ARABIC_FONT_SIZE_KEY, String(arabicFontSize));
+  }, [arabicFontSize]);
+
   // loading 
   if(loading) return <div><Loading /></div>
 
@@ -82,6 +107,10 @@ function App() {
           language={language}
           search={search}
           onMenuClick={() => setIsSidebarOpen((prev) => !prev)}
+          arabicFontSize={arabicFontSize}
+          onIncreaseFontSize={() => updateArabicFontSize(arabicFontSize + 1)}
+          onDecreaseFontSize={() => updateArabicFontSize(arabicFontSize - 1)}
+          onResetFont={resetArabicFontSettings}
         />
         <div className="app__container">
           <div className={`app__sidebar ${isSidebarOpen ? "app__sidebar--open" : ""}`}>

@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const searchParams = new URLSearchParams(window.location.search);
+const isFontDebug = searchParams.get('fontDebug') === '1';
+document.documentElement.classList.toggle('font-debug', isFontDebug);
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

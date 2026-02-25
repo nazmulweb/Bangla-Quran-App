@@ -8,7 +8,6 @@ import SearchResult from './SearchResult';
 import { translations } from '../utils/translations';
 import { surahNamesBn } from '../utils/surahNamesBn';
 import { toLocaleNumber } from '../utils/numberConverter';
-import meccaIcon from '../assets/mecca.svg';
 import madinahIcon from '../assets/madinah.jpg';
 // import Button from '@material-ui/core/Button';
 
@@ -35,7 +34,7 @@ const Surah = ({language, searchResult}) => {
 
     const fetchData = useCallback((id) => {
 
-        const arTranslateSurah = axios.get(`${baseUrl}v1/surah/${id}`);
+        const arTranslateSurah = axios.get(`${baseUrl}v1/surah/${id}/quran-indo-pak`);
         const bnTranslateSurah = axios.get(`${baseUrl}v1/surah/${id}/${language}`);
 
         axios.all([arTranslateSurah, bnTranslateSurah])

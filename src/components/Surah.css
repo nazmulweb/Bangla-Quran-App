@@ -100,9 +100,9 @@
 }
 
 .surah__bismillahArabic {
-  font-family: 'AlQuranIndoPak', 'Amiri', serif;
-  font-weight: 700;
-  font-size: 34px;
+  font-family: var(--quran-font-stack), serif;
+  font-weight: var(--arabic-font-weight, 700);
+  font-size: var(--arabic-font-size, 34px);
   line-height: 2.2;
   color: var(--text-main);
   margin-bottom: 10px;
@@ -124,14 +124,14 @@
 }
 
 .surah__arabicTranslate {
-  font-family: 'AlQuranIndoPak', 'Amiri', serif;
+  font-family: var(--quran-font-stack), serif;
   text-align: right;
-  font-weight: 700;
-  font-size: 34px;
+  font-weight: var(--arabic-font-weight, 400);
+  font-size: var(--arabic-font-size, 34px);
   position: relative;
   margin-right: 30px;
   margin-bottom: 25px;
-  line-height: 2.2;
+  line-height: 1.8;
   color: var(--text-main);
 }
 
@@ -169,11 +169,6 @@
 
   .surah__headerTop {
     margin-bottom: 24px;
-  }
-
-  .surah__arabicTranslate {
-    font-size: 24px;
-    line-height: 1.7;
   }
 
   .surah__ayahText > p:last-child {
@@ -220,7 +215,6 @@
   }
 
   .surah__arabicTranslate {
-    font-size: 21px;
     margin-right: 18px;
     margin-bottom: 16px;
     word-break: break-word;

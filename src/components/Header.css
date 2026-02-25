@@ -16,6 +16,8 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+
+
 .header__container {
   display: flex;
   align-items: center;
@@ -155,6 +157,107 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.header__btn.MuiButt
   background-color: var(--primary-hover) !important;
 }
 
+.header__langauge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.header__fontTools {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.header__fontControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 6px 12px;
+  background: var(--surface-color);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  transition: var(--transition);
+}
+
+.header__fontControl:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(11, 31, 59, 0.08);
+}
+
+.header__fontLabel {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.header__fontBtn {
+  border: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-color);
+  color: var(--primary);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-color);
+}
+
+.header__fontBtn:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(11, 31, 59, 0.15);
+}
+
+.header__fontBtn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(11, 31, 59, 0.1);
+}
+
+.header__fontBtn .MuiSvgIcon-root {
+  font-size: 1.1rem !important;
+  margin-right: 0;
+}
+
+.header__fontValue {
+  min-width: 50px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+
+.header__fontResetBtn {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  background: var(--surface-color);
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.header__fontResetBtn:hover {
+  background: var(--bg-color);
+  color: var(--primary);
+  border-color: var(--border-color);
+}
+
 @media only screen and (min-width: 768px) and (max-width: 992px) {
   .header {
     margin-left: 220px;
@@ -190,7 +293,53 @@ button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.header__btn.MuiButt
   .header__langauge {
     margin-left: auto;
     display: flex;
-    gap: 8px;
+    gap: 6px;
+    justify-content: flex-end;
+  }
+
+  .header__fontTools {
+    margin-right: 0;
+  }
+
+  .header__fontControl {
+    padding: 3px 6px;
+  }
+
+  .header__fontLabel {
+    display: none;
+  }
+
+  .header__fontBtn {
+    width: 26px;
+    height: 26px;
+  }
+
+  .header__fontBtn .MuiSvgIcon-root {
+    font-size: 0.95rem !important;
+  }
+
+  .header__fontValue {
+    min-width: 32px;
+    font-size: 13px;
+  }
+
+  .header__prayerTime {
+    margin-right: 0 !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+  }
+
+  .header__langauge > button {
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    white-space: nowrap !important;
+  }
+
+  .header__settingsDrawer {
+    right: 12px;
+    width: calc(100% - 24px);
+    top: calc(var(--header-height, 140px) + 10px);
   }
 
   .header__search {

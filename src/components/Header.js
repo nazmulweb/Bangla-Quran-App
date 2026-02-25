@@ -5,9 +5,21 @@ import { Link } from 'react-router-dom'
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
+import SettingsIcon from '@material-ui/icons/Settings';
 import { translations } from '../utils/translations';
   
-const Header = ({onclick, language, search, onMenuClick}) =>  {
+const Header = ({
+  onclick,
+  language,
+  search,
+  onMenuClick,
+  arabicFontSize,
+  onIncreaseFontSize,
+  onDecreaseFontSize,
+  onResetFont,
+}) =>  {
 
   const [searchValue, setSearchValue] = useState('');
   
@@ -58,6 +70,18 @@ const Header = ({onclick, language, search, onMenuClick}) =>  {
                     </Button>
                 </form>
                 <div className="header__langauge">
+                    <div className="header__fontTools">
+                        <div className="header__fontControl">
+                            <span className="header__fontLabel">A</span>
+                            <button type="button" className="header__fontBtn" onClick={onDecreaseFontSize} aria-label="Decrease Arabic font size">
+                                <RemoveIcon />
+                            </button>
+                            <span className="header__fontValue">{arabicFontSize}px</span>
+                            <button type="button" className="header__fontBtn" onClick={onIncreaseFontSize} aria-label="Increase Arabic font size">
+                                <AddIcon />
+                            </button>
+                        </div>
+                    </div>
                     <Link to="/prayer-time" className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-disableElevation header__prayerTime">{t.prayerTimeBtn}</Link>
                     <Button variant="contained" color="primary" disableElevation onClick={()=> onclick()}>{ language === "bn.bengali" ? "English" : "Bengali" } </Button>
                 </div>
