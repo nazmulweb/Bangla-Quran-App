@@ -17,7 +17,7 @@ import {
 // base url 
 const baseUrl = process.env.REACT_APP_QURAN_BASE_URL
 const ARABIC_FONT_SIZE_KEY = "arabic_font_size";
-const DEFAULT_ARABIC_FONT_SIZE = 38;
+const DEFAULT_ARABIC_FONT_SIZE = 35;
 
 const getStoredNumber = (key, fallback, min, max, step = 1) => {
   if (typeof window === "undefined") return fallback;
